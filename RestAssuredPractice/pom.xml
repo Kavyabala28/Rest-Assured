@@ -54,6 +54,5 @@
 			<artifactId>json-schema-validator</artifactId>
 			<version>5.5.0</version>
 		</dependency>
-
-	</dependencies>
+</dependencies>
 </project>
