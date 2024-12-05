@@ -46,4 +46,21 @@ public class ParsingJSONResponseData {
 		Assert.assertEquals(bookName, "The Lord of the Rings");
 		
 		}
+	
+	@Test(priority=2)
+	void testJSONResponseBodyData() {
+		
+		Response res  = given()
+		     .contentType(ContentType.JSON)
+		
+		.when()
+		      .get("http://localhost:3000/store");
+		
+		 Assert.assertEquals(res.statusCode(), 200);   // Validation 1
+		Assert.assertEquals(res.header("Content-Type"), "application/json");
+		
+		String bookName = res.jsonPath().get("book[3].title").toString();
+		Assert.assertEquals(bookName, "The Lord of the Rings");
+	
+	}
 }
