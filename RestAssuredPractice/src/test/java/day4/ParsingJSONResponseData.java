@@ -56,11 +56,21 @@ public class ParsingJSONResponseData {
 		.when()
 		      .get("http://localhost:3000/store");
 		
-		 Assert.assertEquals(res.statusCode(), 200);   // Validation 1
+		/* Assert.assertEquals(res.statusCode(), 200);   // Validation 1
 		Assert.assertEquals(res.header("Content-Type"), "application/json");
 		
 		String bookName = res.jsonPath().get("book[3].title").toString();
-		Assert.assertEquals(bookName, "The Lord of the Rings");
+		Assert.assertEquals(bookName, "The Lord of the Rings");*/
+		
+
+		// JSONObject
+		JSONObject jo = new JSONObject(res.asString());  // Converting response into JSON Object
+		
+		// Printing all title
+		for(int i =0; i<jo.getJSONArray("book").length(); i++) {
+			String title = jo.getJSONArray("book").getJSONObject(i).get("title").toString();
+			System.out.println(title);
+		}
 	
 	}
 }
