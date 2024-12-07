@@ -67,10 +67,22 @@ public class ParsingJSONResponseData {
 		JSONObject jo = new JSONObject(res.asString());  // Converting response into JSON Object
 		
 		// Printing all title
-		for(int i =0; i<jo.getJSONArray("book").length(); i++) {
+		/*for(int i =0; i<jo.getJSONArray("book").length(); i++) {
 			String title = jo.getJSONArray("book").getJSONObject(i).get("title").toString();
 			System.out.println(title);
+		}*/
+		
+		// Search for title of the book in JSON - Validation 1
+		boolean status = false;
+				
+		for(int i =0; i<jo.getJSONArray("book").length(); i++) {
+			String title = jo.getJSONArray("book").getJSONObject(i).get("title").toString();
+			  if(title.equals("The Lord of the Rings")) {
+					status = true;
+					break;	
+			   }
 		}
-	
+				
+		Assert.assertEquals(status, true);
 	}
 }
