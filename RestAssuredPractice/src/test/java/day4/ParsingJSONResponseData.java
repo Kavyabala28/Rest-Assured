@@ -84,5 +84,17 @@ public class ParsingJSONResponseData {
 		}
 				
 		Assert.assertEquals(status, true);
+		
+		// Validate Total price of books - Validation 2
+		
+		double totalPrice = 0;
+				
+		for(int i =0; i<jo.getJSONArray("book").length(); i++) {
+			String price = jo.getJSONArray("book").getJSONObject(i).get("price").toString();
+				totalPrice = totalPrice + Double.parseDouble(price);
+		}
+				
+			System.out.println("Total price of all books are : " +totalPrice);
+			Assert.assertEquals(totalPrice, 526.0);
 	}
 }
