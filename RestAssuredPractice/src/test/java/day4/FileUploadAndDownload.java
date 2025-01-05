@@ -29,5 +29,27 @@ public class FileUploadAndDownload {
 		    .body("fileName", equalTo("demo1.txt"))
 		    .log().all();
 	}
+	
+	@Test
+		void multipleFilesUpload() 
+			
+		{
+			 File myFile1 = new File("C:\\document\\demo1.txt");
+			 File myFile2 = new File("C:\\document\\demo2.txt");
+			
+			given()
+			   .multiPart("files", myFile1)
+			   .multiPart("files", myFile2)
+			   .contentType("multipart/form-data")
+			   
+			.when()
+			    .post("http://localhost:8080/uploadMultipleFiles")
+			
+			.then()
+		        .statusCode(200)
+			    .body("[0].fileName", equalTo("demo1.txt"))
+			    .body("[1].fileName", equalTo("demo2.txt"))
+			    .log().all();
+		}
 
 }
