@@ -30,7 +30,7 @@ public class FileUploadAndDownload {
 		    .log().all();
 	}
 	
-	@Test
+	//@Test
 		void multipleFilesUpload() 
 			
 		{
@@ -50,6 +50,19 @@ public class FileUploadAndDownload {
 			    .body("[0].fileName", equalTo("demo1.txt"))
 			    .body("[1].fileName", equalTo("demo2.txt"))
 			    .log().all();
+		}
+	
+	@Test(priority = 2)
+	void downloadFile() {
+		
+		given()
+		
+		.when()
+		     .get("http://localhost:8080/downloadFile/demo1.txt")
+		
+		.then()
+		     .statusCode(200)
+		     .log().body();
 		}
 
 }
