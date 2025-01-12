@@ -31,4 +31,24 @@ public class SerializationDeserialization {
 		System.out.println(jsonData);
 
 	}
+	
+	// DeSerialization - JSON Object ---------> Pojo
+		@Test
+		void convertJsonToPojo() throws JsonProcessingException {
+
+			String jsondata = "{\r\n" + "  \"id\" : \"4\",\r\n" + "  \"name\" : \"Scott\",\r\n"
+					+ "  \"location\" : \"France\",\r\n" + "  \"phone\" : \"123456\",\r\n"
+					+ "  \"courses\" : [ \"C\", \"Python\" ]\r\n" + "}";
+
+			// Convert Json data ---------> POJO 
+			ObjectMapper objMapper =  new ObjectMapper();
+			Student stuPojo = objMapper.readValue(jsondata, Student.class);  // Convert JSON to POJO
+			
+			System.out.println("Id:" +stuPojo.getId());
+			System.out.println("Name:" +stuPojo.getName());
+			System.out.println("Location:" +stuPojo.getLocation());
+			System.out.println("Phone:" +stuPojo.getPhone());
+			System.out.println("Course1:" +stuPojo.getCourses()[0]);
+			System.out.println("Course2:" +stuPojo.getCourses()[1]);
+		}
 }
