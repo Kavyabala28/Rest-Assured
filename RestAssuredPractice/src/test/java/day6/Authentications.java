@@ -24,5 +24,22 @@ public class Authentications {
 		      .body("authenticated", equalTo(true))
 		      .log().all();
 	}
+	
+
+	// 2. Digest
+	   @Test(priority = 2)
+       void testDigestAuthentication() {
+		
+		given()
+		     .auth().digest("postman", "password")
+		
+		.when()
+		     .get("https://postman-echo.com/basic-auth")
+		
+		.then()
+		      .statusCode(200)
+		      .body("authenticated", equalTo(true))
+		      .log().all();
+	}
 
 }
