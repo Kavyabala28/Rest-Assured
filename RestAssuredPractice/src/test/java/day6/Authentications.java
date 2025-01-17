@@ -41,5 +41,22 @@ public class Authentications {
 		      .body("authenticated", equalTo(true))
 		      .log().all();
 	}
+	   
+
+	   // 3. Preemptive
+	   @Test(priority = 3)
+       void testPreemptiveAuthentication() {
+		
+		given()
+		     .auth().preemptive().basic("postman", "password")
+		
+		.when()
+		     .get("https://postman-echo.com/basic-auth")
+		
+		.then()
+		      .statusCode(200)
+		      .body("authenticated", equalTo(true))
+		      .log().all();
+	}
 
 }
