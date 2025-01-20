@@ -77,5 +77,21 @@ public class Authentications {
 		   
 	   }
 	   
+	   
+	   // 5. OAuth1
+	   @Test
+	   void testOAuth1Authentication() {
+		   
+		   given()
+		        .auth().oauth("consumerkey", "consumerSecrete", "accessToken", "tokenSecrete") // This is OAuth1.0 Authentication
+		   
+		   .when()
+		        .get("url")
+		   
+		   .then()
+		        .statusCode(200);
+	   }
+	   
+	   
 
 }
