@@ -78,7 +78,7 @@ public class Authentications {
 	   }
 	   
 	   
-	   // 5. OAuth1
+	   // 5. OAuth1.0
 	   @Test
 	   void testOAuth1Authentication() {
 		   
@@ -92,6 +92,18 @@ public class Authentications {
 		        .statusCode(200);
 	   }
 	   
-	   
-
+	// 6. OAuth2.0
+	   @Test
+	   void testOAuth2Authentication() {
+		   
+		   given()
+		        .auth().oauth2("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") // This is OAuth1.0 Authentication
+		   
+		   .when()
+		        .get("https://api.github.com/user/repos")
+		   
+		   .then()
+		        .statusCode(200)
+		        .log().all();
+	   }	  
 }
