@@ -105,5 +105,21 @@ public class Authentications {
 		   .then()
 		        .statusCode(200)
 		        .log().all();
-	   }	  
+	   }
+	   
+	// 7. API Key
+	   @Test
+	   void testAPIKeyAuthentication() {
+		   
+		   // Method 1
+		   given()
+		        .queryParam("appid", "fe9c5cddb7e01d747b4611c3fc9eaf2c")   // appid is APIkey
+		   
+		   .when()
+		        .get("https://api.oepnweathermap.org/data/2.5/forecast/daily?q=Delhi&units=metric&cnt=7")
+		   
+		   .then()
+		       .statusCode(200)
+		       .log().all();
+	   }
 }
