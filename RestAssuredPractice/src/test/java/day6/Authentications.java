@@ -112,14 +112,30 @@ public class Authentications {
 	   void testAPIKeyAuthentication() {
 		   
 		   // Method 1
-		   given()
-		        .queryParam("appid", "fe9c5cddb7e01d747b4611c3fc9eaf2c")   // appid is APIkey
+			/*
+			 * given() .queryParam("appid", "fe9c5cddb7e01d747b4611c3fc9eaf2c") // appid is
+			 * APIkey
+			 * 
+			 * .when() .get(
+			 * "https://api.oepnweathermap.org/data/2.5/forecast/daily?q=Delhi&units=metric&cnt=7")
+			 * 
+			 * .then() .statusCode(200) .log().all();
+			 */
 		   
-		   .when()
-		        .get("https://api.oepnweathermap.org/data/2.5/forecast/daily?q=Delhi&units=metric&cnt=7")
-		   
-		   .then()
-		       .statusCode(200)
-		       .log().all();
-	   }
+		// Method 2
+					
+			given() 
+			      .queryParam("appid", "fe9c5cddb7e01d747b4611c3fc9eaf2c")
+				  .pathParam("mypath", "data/2.5/forecast/daily") 
+				  .queryParam("q", "Delhi")
+				  .queryParam("units", "metric") 
+				  .queryParam("cnt", "7")
+					  
+			.when() 
+			      .get("https://api.oepnweathermap.org/{mypath}")
+					  
+			.then() 
+			       .statusCode(200) 
+			       .log().all();
+		}
 }
